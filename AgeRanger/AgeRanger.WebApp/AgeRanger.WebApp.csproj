@@ -3213,7 +3213,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -3268,8 +3270,13 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.105.0\build\net451\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets'))" />
   </Target>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Import Project="..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets" Condition="Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" />
+  <Target Name="BeforeBuild">
+    <NugetContentRestoreTask SolutionDir="$(SolutionDir)" ProjectDir="$(ProjectDir)" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

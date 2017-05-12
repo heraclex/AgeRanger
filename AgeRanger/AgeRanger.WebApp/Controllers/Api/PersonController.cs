@@ -41,12 +41,8 @@ namespace AgeRanger.WebApp.Controllers.Api
                     ModelState.Values.SelectMany(modelState => modelState.Errors));
             }
 
-            var result = this.service.SavePerson(personModel);
-
-            var response = Request.CreateResponse(HttpStatusCode.Created, result);
-            //string uri = Url.Link("DefaultApi", new { id = product.Id });
-            //response.Headers.Location = new Uri(uri);
-
+            var personModelCreated = this.service.SavePerson(personModel);
+            var response = Request.CreateResponse(HttpStatusCode.Created, personModelCreated);
             return response;
         }
     }
