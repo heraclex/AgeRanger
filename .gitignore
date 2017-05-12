@@ -301,3 +301,4 @@ paket-files/
 /AgeRanger/AgeRanger.WebApp/Content/bootstrap-theme.css
 /AgeRanger/AgeRanger.WebApp/Scripts/bootstrap.min.js
 /AgeRanger/AgeRanger.WebApp/Scripts/bootstrap.js
+*.jfm

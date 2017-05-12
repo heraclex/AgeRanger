@@ -22,12 +22,14 @@ namespace AgeRange.UnitTest.WebApp
         {
             this.mockService = new Mock<IService>();
             
-            mockService.Setup(m => m.GetPeople()).Returns(new List<PersonModel>()
+            mockService.Setup(m => m.GetPeople(string.Empty)).Returns(new List<PersonModel>()
             {
                 new PersonModel() { Id = 1, FirstName = "Toan", LastName = "Le", Age = 29, AgeGroup = "Human"},
                 new PersonModel() { Id = 2, FirstName = "Eric", LastName = "Lee", Age = 139, AgeGroup = "Ancient"},
                 new PersonModel() { Id = 3, FirstName = "David", LastName = "Cantona", Age = 999, AgeGroup = "NOT Human"}
             });
+
+            
         }
     }
 }

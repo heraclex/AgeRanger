@@ -23,7 +23,7 @@ namespace AgeRanger.WebApp.Controllers.Api
 
         public HttpResponseMessage Get(string name)
         {
-            var result = this.service.GetPeople();
+            var result = this.service.GetPeople(name);
 
             // TODO: should be move to BaseController
             if (result == null || !result.Any())
@@ -43,9 +43,9 @@ namespace AgeRanger.WebApp.Controllers.Api
 
             var result = this.service.SavePerson(personModel);
 
-            var response = Request.CreateResponse(HttpStatusCode.Created, product);
-            string uri = Url.Link("DefaultApi", new { id = product.Id });
-            response.Headers.Location = new Uri(uri);
+            var response = Request.CreateResponse(HttpStatusCode.Created, result);
+            //string uri = Url.Link("DefaultApi", new { id = product.Id });
+            //response.Headers.Location = new Uri(uri);
 
             return response;
         }

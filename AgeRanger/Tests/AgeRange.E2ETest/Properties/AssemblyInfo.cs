@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("AgeRanger.IntegrationTest")]
+[assembly: AssemblyTitle("AgeRange.E2ETest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AgeRanger.IntegrationTest")]
+[assembly: AssemblyProduct("AgeRange.E2ETest")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("014f149f-23a3-4094-aa13-9c17e1333788")]
+[assembly: Guid("62e84b97-0478-45b1-8db9-8964ac497831")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

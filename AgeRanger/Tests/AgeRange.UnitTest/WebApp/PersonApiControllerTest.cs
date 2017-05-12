@@ -14,10 +14,10 @@ namespace AgeRange.UnitTest.WebApp
             var personController = new PersonController(this.mockService.Object);
 
             //Act
-            var results = ()personController.Get(string.Empty);
+            var messageResponse = personController.Get(string.Empty);
 
             // Assert
-            Assert.IsTrue(results.)
+            //Assert.IsTrue(messageResponse.Content)
 
         }
     }

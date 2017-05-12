@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgeRanger.IntegrationTest
+namespace AgeRange.E2ETest
 {
     [TestClass]
     public class UnitTest1
