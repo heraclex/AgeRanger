@@ -34,7 +34,7 @@ namespace AgeRanger.Service.Implementation
         /// <returns>return true if success</returns>
         public PersonModel SavePerson(PersonModel model)
         {
-            var personAdded = this.personRepo.SaveOrUpdate(model.MapTo<Person>());
+            var personAdded = this.personRepo.ForceSaveOrUpdateImmediately(model.MapTo<Person>());
 
             return personAdded.MapTo<PersonModel>();
         }
@@ -60,8 +60,9 @@ namespace AgeRanger.Service.Implementation
                 foreach (var item in result)
                 {
                     // Min Age is expected to has a value, ignore validation on minAge
-                    item.AgeGroup = ageGroups.First(g => item.Age >= g.MinAge.Value
-                    && ((!g.MaxAge.HasValue) || (g.MaxAge.HasValue && g.MaxAge.Value >= item.Age))).Description;
+                    item.AgeGroup = ageGroups.First(g => 
+                    ((!g.MaxAge.HasValue) && item.Age >= g.MinAge.Value)
+                    || (g.MaxAge.HasValue && g.MaxAge.Value >= item.Age && g.MinAge.Value <= item.Age)).Description;
                 }                
             }
 

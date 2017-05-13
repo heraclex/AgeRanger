@@ -302,3 +302,10 @@ paket-files/
 /AgeRanger/AgeRanger.WebApp/Scripts/bootstrap.min.js
 /AgeRanger/AgeRanger.WebApp/Scripts/bootstrap.js
 *.jfm
+/AgeRanger/AgeRanger.WebApp/Content/toastr.scss
+/AgeRanger/AgeRanger.WebApp/Content/toastr.min.css
+/AgeRanger/AgeRanger.WebApp/Content/toastr.less
+/AgeRanger/AgeRanger.WebApp/Content/toastr.css
+/AgeRanger/AgeRanger.WebApp/Scripts/toastr.min.js
+/AgeRanger/AgeRanger.WebApp/Scripts/toastr.js
+/AgeRanger/AgeRanger.WebApp/Scripts/angular-ui

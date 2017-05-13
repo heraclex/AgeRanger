@@ -142,7 +142,7 @@ namespace AgeRange.UnitTest.WebApp.ApiControllers
             controller.Configuration = new HttpConfiguration();
 
             //Act
-            var response = controller.Put(personModel.Id, personModel);
+            var response = controller.Update(personModel.Id, personModel);
 
             // Assert
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NotFound);
@@ -160,7 +160,7 @@ namespace AgeRange.UnitTest.WebApp.ApiControllers
             controller.ModelState.AddModelError("InValidFirstName", "FirstName is required");
 
             //Act
-            var response = controller.Put(personModel.Id, personModel);
+            var response = controller.Update(personModel.Id, personModel);
 
             // Assert
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NotAcceptable);
@@ -181,7 +181,7 @@ namespace AgeRange.UnitTest.WebApp.ApiControllers
             controller.Configuration = new HttpConfiguration();
 
             //Act
-            var response = controller.Put(personModel.Id, personModel);
+            var response = controller.Update(personModel.Id, personModel);
 
             // Assert
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);

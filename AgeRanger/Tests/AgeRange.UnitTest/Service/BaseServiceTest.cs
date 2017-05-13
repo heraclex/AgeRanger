@@ -54,6 +54,13 @@ namespace AgeRange.UnitTest.Service
                    return entity;
                });
 
+            this.mockPersonRepository.Setup(m => m.ForceSaveOrUpdateImmediately(It.IsAny<Person>()))
+               .Returns((Person entity) => {
+                   if (entity.Id == 0)
+                       entity.Id = 999;
+                   return entity;
+               });
+
         }
     }
 }
