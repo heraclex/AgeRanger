@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgeRange.E2ETest
+namespace AgeRange.AcceptanceTest
 {
     [TestClass]
     public class UnitTest1

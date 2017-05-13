@@ -61,7 +61,7 @@ namespace AgeRanger.WebApp
             this.Start();
 
             // Set dependence resolver for System.Web.Mvc.DepenceResolver
-            DependencyResolver.SetResolver(new AutofacDependenceResolver(this.container, DependencyResolver.Current));
+            //DependencyResolver.SetResolver(new AutofacDependenceResolver(this.container, DependencyResolver.Current));
 
             // Configure Web API with the dependency resolver.
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
@@ -100,14 +100,17 @@ namespace AgeRanger.WebApp
                         (pi, c) => c.Resolve<AgeRangerDbContext>()).AsImplementedInterfaces();
 
             // Register for Service
-            builder.RegisterType<AgeRanger.Service.Implementation.Service>().As<AgeRanger.Service.Contract.IService>().InstancePerRequest();
+            builder.RegisterType<AgeRanger.Service.Implementation.Service>().As<AgeRanger.Service.Contract.IService>().InstancePerApiRequest();
             this.logger.InfoFormat("--- Register {0}", typeof(Repository<>).Name);
         }
 
         private void RegisterWebComponents()
         {
             // Register controllers all at once using assembly scanning...
-            this.builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            // Don't need using DI for normal controller
+            //this.builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+            // Only apply for API controller
             this.builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             var types = this.GetType().Assembly.GetTypes().Where(type => !type.IsAbstract).ToList();            

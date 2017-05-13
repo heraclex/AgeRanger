@@ -14,9 +14,9 @@ namespace AgeRanger.DbContext.Mappings
             this.ToTable("AgeGroup");
 
             // Properties
-            //this.Property(t => t.MinAge).IsOptional().HasColumnName("MinAge");
-            //this.Property(t => t.MaxAge).IsOptional().HasColumnName("MaxAge");
-            this.Property(t => t.Description).IsRequired().HasColumnName("Description");
+            this.Property(t => t.MinAge).HasColumnName("MinAge");
+            this.Property(t => t.MaxAge).HasColumnName("MaxAge");
+            this.Property(t => t.Description).HasColumnName("Description");
         }
     }
 }

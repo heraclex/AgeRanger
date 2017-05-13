@@ -10,6 +10,9 @@ using AgeRanger.DbContext.Entities;
 
 namespace AgeRanger.Service.Implementation
 {
+    /// <summary>
+    /// Represents for Service layer which is responsible for business logic
+    /// </summary>
     public class Service : IService
     {
 
@@ -40,30 +43,55 @@ namespace AgeRanger.Service.Implementation
         /// Allow filtering people base on first/last name
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PersonModel> GetPeople(string filterCriteria)
+        public IEnumerable<PersonModel> FindPeople(string filterCriteria)
         {
-            //return (new List<Person>() { new Person()}).MapTo<PersonModel>();
+            var personList = !string.IsNullOrEmpty(filterCriteria) ?
+                this.personRepo.List(x => x.FirstName.Contains(filterCriteria) || x.LastName.Contains(filterCriteria))
+                : this.personRepo.GetAll();
 
-            ICollection<Person> results;
-            if (!string.IsNullOrEmpty(filterCriteria))
+            // convert to model list 
+            var result = personList.MapTo<PersonModel>();
+
+            // retrieve age Group description
+            // TODO: should be refactoring by joining both table by logic code and execute from db level. Avoifing 2 rounds hiting Database
+            if (result.Any())
             {
-                results = this.personRepo.List(x => x.FirstName.Contains(filterCriteria) || x.LastName.Contains(filterCriteria));
-            }
-            else
-            {
-                results = this.personRepo.GetAll();
+                var ageGroups = this.GetAgeGroupsByAgeRange(personList.Min(p => p.Age).Value, personList.Max(p => p.Age).Value);
+                foreach (var item in result)
+                {
+                    // Min Age is expected to has a value, ignore validation on minAge
+                    item.AgeGroup = ageGroups.First(g => item.Age >= g.MinAge.Value
+                    && ((!g.MaxAge.HasValue) || (g.MaxAge.HasValue && g.MaxAge.Value >= item.Age))).Description;
+                }                
             }
 
-            return results.MapTo<PersonModel>();
+            return result;
         }
-        
+
+        /// <summary>
+        /// Get Person By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Person Model</returns>
+        public PersonModel GetPersonById(long id)
+        {
+            var result = this.personRepo.Get(id).MapTo<PersonModel>();
+            result.AgeGroup = this.GetAgeGroupsByAgeRange(result.Age.Value, result.Age.Value).First().Description;
+            return result;
+        }
+
+        public bool IsPersonExisted(long id)
+        {
+            return this.personRepo.Query(x => x.Id == id).Any();
+        }
+
         public void Dispose()
         {
-            this.personRepo.Dispose();
-            this.ageGroupRepo.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         #region private methods
+
         private void ConfigAutoMapper()
         {
             var profiles = this.GetType().Assembly.GetTypes().Where(x => typeof(AutoMapper.Profile).IsAssignableFrom(x));
@@ -73,7 +101,13 @@ namespace AgeRanger.Service.Implementation
                 AutoMapper.Mapper.Initialize(x => x.AddProfile(Activator.CreateInstance(profile) as AutoMapper.Profile));
             }
         }
-        
+
+        private IEnumerable<AgeGroup> GetAgeGroupsByAgeRange(long minAge, long maxAge)
+        {
+            return this.ageGroupRepo.Query(g => (!g.MaxAge.HasValue && g.MinAge.Value <= minAge)
+            || (g.MaxAge.HasValue && g.MaxAge.Value >= minAge && g.MinAge.Value <= maxAge)).ToList();
+        }
+
         #endregion
     }
 }

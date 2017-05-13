@@ -13,9 +13,9 @@ namespace AgeRanger.DbContext.Mappings
         {
             this.ToTable("Person");
             // Properties
-            this.Property(t => t.FirstName).IsOptional().HasColumnName("FirstName");
-            this.Property(t => t.LastName).IsOptional().HasColumnName("LastName");
-            //this.Property(t => t.Age).IsRequired().HasColumnName("Age");
+            this.Property(t => t.FirstName).HasColumnName("FirstName");
+            this.Property(t => t.LastName).HasColumnName("LastName");
+            this.Property(t => t.Age).HasColumnName("Age");
         }
     }
 }

@@ -75,19 +75,21 @@ namespace AgeRanger.Repository
             return this.dbContext.Set<TEntity>().Where(@where).ToList();
         }
 
-        public ICollection<TEntity> List(IQueryable<TEntity> queryInfo)
+        /// <summary>
+        /// Query method will return IQueryable to Repository.
+        /// </summary>
+        /// <param name="where">
+        /// Where condition on Entity.
+        /// </param>
+        /// <typeparam name="TEntity">
+        /// T Entity : conrete class
+        /// </typeparam>
+        /// <returns>
+        /// IQueryable base on T Entity
+        /// </returns>
+        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> @where)
         {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<TEntity> Query(IQueryable<Func<TEntity, bool>> @where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<TEntity> Query(IQueryable<TEntity> queryInfo)
-        {
-            throw new NotImplementedException();
+            return this.dbContext.Set<TEntity>().Where(@where).AsQueryable();
         }
 
         /// <summary>
@@ -119,40 +121,7 @@ namespace AgeRanger.Repository
         public virtual TEntity ForceSaveOrUpdateImmediately(TEntity entity)
         {
             return this.InternalSaveOrUpdate(entity, true);
-        }
-
-        /// <summary>
-        /// Delete Object by updating isDelete = true
-        /// </summary>
-        /// <param name="entity">
-        /// The entity with isDelete = true
-        /// </param>
-        public TEntity Delete(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteRecord(Expression<Func<TEntity, bool>> @where)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Query method will return IQueryable to Repository.
-        /// </summary>
-        /// <param name="where">
-        /// Where condition on Entity.
-        /// </param>
-        /// <typeparam name="TEntity">
-        /// T Entity : conrete class
-        /// </typeparam>
-        /// <returns>
-        /// IQueryable base on T Entity
-        /// </returns>
-        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> @where)
-        {
-            return this.dbContext.Set<TEntity>().Where(@where).AsQueryable();
-        }
+        }     
 
         /// <summary>
         /// Permanent delete a record in db
@@ -198,7 +167,6 @@ namespace AgeRanger.Repository
             {
                 this.dbContext.Database.Connection.Close();
             }
-
             this.dbContext.Dispose();
         }
 

@@ -1,4 +1,5 @@
-﻿using AgeRanger.DbContext.Entities;
+﻿using AgeRange.UnitTest.Helper;
+using AgeRanger.DbContext.Entities;
 using AgeRanger.Service.Contract;
 using AgeRanger.Service.Contract.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace AgeRange.UnitTest.WebApp
 {
 
-        [TestClass]
+    [TestClass]
     public abstract class BaseControllerTest
     {
         protected Mock<IService> mockService;
@@ -21,18 +22,40 @@ namespace AgeRange.UnitTest.WebApp
         public virtual void Setup()
         {
             this.mockService = new Mock<IService>();
+
+            var people = TestingDataDource.PersonModelList;
             
-            mockService.Setup(m => m.GetPeople(string.Empty)).Returns(new List<PersonModel>()
-            {
-                new PersonModel() { Id = 1, FirstName = "David", LastName = "Cantona", Age = 29, AgeGroup = "Human"},
-                new PersonModel() { Id = 2, FirstName = "Eric", LastName = "Lee", Age = 139, AgeGroup = "Ancient"},
-                new PersonModel() { Id = 3, FirstName = "Toan", LastName = "Le", Age = 999, AgeGroup = "NOT Human"}
+            // Mock FindPeople Method on Service
+            mockService.Setup(m => m.FindPeople(It.IsAny<string>())).Returns((string filterCriteria) => {
+                if (string.IsNullOrEmpty(filterCriteria))
+                {
+                    return people;
+                }
+
+                return people.Where(x => x.FirstName.Contains(filterCriteria) 
+                || x.LastName.Contains(filterCriteria)).ToList();
             });
-            
-            mockService.Setup(m => m.SavePerson(It.IsAny<PersonModel>()))
-                .Returns((PersonModel m) => {                    
-                    return m;
-                });
+
+            // Mock SavePerson Method on Service
+            mockService.Setup(m => m.SavePerson(It.IsAny<PersonModel>())).Returns((PersonModel m) => 
+            {
+                if(m.Id == 0)
+                    m.Id = 999;
+                return m;
+            });
+
+            // Mock SavePerson Method on Service
+            mockService.Setup(m => m.IsPersonExisted(It.IsAny<long>())).Returns((long id) =>
+            {
+                return TestingDataDource.PersonList.Any(x=>x.Id == id);
+            });
+
+            // Mock GetPerson By Id Method on Service
+            mockService.Setup(m => m.GetPersonById(It.IsAny<long>())).Returns((long id) =>
+            {
+                return TestingDataDource.PersonModelList.FirstOrDefault(x => x.Id == id);
+            });
         }
     }
 }
+

@@ -43,7 +43,6 @@ namespace AgeRanger.DbContext
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
-            //modelBuilder.Properties<long?>().Configure(c => c.HasColumnType("bigint"));
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace AgeRanger.DbContext
         /// </summary>
         private void Configure()
         {
-            //https://www.google.com.vn/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCAQFjAA&url=http%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Fdata%2Fdn469464.aspx&ei=2jSVU-rbAdDEkAXE34GQBQ&usg=AFQjCNHmlZTZz1W7x3NDoGYZatfygpZxmg&sig2=45mlFF7rNSidYtxauNZqBA&bvm=bv.68445247,d.dGI&cad=rja
+            https://msdn.microsoft.com/en-us/data/dn469464.aspx
             this.Database.Log = this.WriteLog;
             this.Configuration.ProxyCreationEnabled = true;
             this.Configuration.ValidateOnSaveEnabled = true;
@@ -64,7 +63,7 @@ namespace AgeRanger.DbContext
                 return;
             }
 
-            //TODO: Add log here
+            //TODO: Add Db Execution log here
         }
     }
 }

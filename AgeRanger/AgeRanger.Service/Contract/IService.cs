@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace AgeRanger.Service.Contract
 {
+    /// <summary>
+    /// Represents for Service contract
+    /// </summary>
     public interface IService : IDisposable
     {
         /// <summary>
@@ -21,6 +24,20 @@ namespace AgeRanger.Service.Contract
         /// Allow filtering people base on first/last name
         /// </summary>
         /// <returns></returns>
-        IEnumerable<PersonModel> GetPeople(string filterCriteria);
+        IEnumerable<PersonModel> FindPeople(string filterCriteria);
+
+        /// <summary>
+        /// Get Person By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Person Model</returns>
+        PersonModel GetPersonById(long id);
+
+        /// <summary>
+        /// Verify Person by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool IsPersonExisted(long id);
     }
 }

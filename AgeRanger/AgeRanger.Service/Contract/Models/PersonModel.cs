@@ -14,10 +14,10 @@ namespace AgeRanger.Service.Contract.Models
     {
         public long Id { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]        
         public string LastName { get; set; }
 
         [Required]

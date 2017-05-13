@@ -21,9 +21,24 @@ namespace AgeRanger.WebApp.Controllers.Api
             this.service = service;
         }
 
-        public HttpResponseMessage Get(string name)
+        // GET: api/Person/5
+        public HttpResponseMessage Get(long personId)
         {
-            var result = this.service.GetPeople(name);
+            var result = this.service.GetPersonById(personId);
+
+            // TODO: should be move to BaseController
+            if (result == null)
+            {
+                // TODO: Error message should be move to common class
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Person does not exist");
+            }
+            return Request.CreateResponse(result);
+        }
+
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage Filter(string name)
+        {
+            var result = this.service.FindPeople(name);
 
             // TODO: should be move to BaseController
             if (result == null || !result.Any())
@@ -33,16 +48,36 @@ namespace AgeRanger.WebApp.Controllers.Api
             return Request.CreateResponse(result);
         }
 
+        // POST: api/Person
         public HttpResponseMessage Post(PersonModel personModel)
         {
             if (!ModelState.IsValid)
             {
-                return Request.CreateResponse(HttpStatusCode.NotAcceptable, 
-                    ModelState.Values.SelectMany(modelState => modelState.Errors));
+                return Request.CreateResponse(HttpStatusCode.NotAcceptable,
+                    ModelState.Values.Select(modelState => modelState.Errors).ToList());
             }
 
             var personModelCreated = this.service.SavePerson(personModel);
             var response = Request.CreateResponse(HttpStatusCode.Created, personModelCreated);
+            return response;
+        }
+
+        // PUT: api/Person/5
+        public HttpResponseMessage Put(long id, [FromBody]PersonModel personModel)
+        {
+            if (!this.service.IsPersonExisted(id))
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Person does not exist");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotAcceptable,
+                    ModelState.Values.Select(modelState => modelState.Errors).ToList());
+            }
+
+            var personModelCreated = this.service.SavePerson(personModel);
+            var response = Request.CreateResponse(HttpStatusCode.OK, personModelCreated);
             return response;
         }
     }

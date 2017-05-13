@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("AgeRange.E2ETest")]
+[assembly: AssemblyTitle("AgeRange.AcceptanceTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AgeRange.E2ETest")]
+[assembly: AssemblyProduct("AgeRange.AcceptanceTest")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("62e84b97-0478-45b1-8db9-8964ac497831")]
+[assembly: Guid("659a37b1-9f04-43a4-882d-9f789ed7431e")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

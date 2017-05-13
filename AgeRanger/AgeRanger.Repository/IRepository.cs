@@ -58,20 +58,6 @@ namespace AgeRanger.Repository
         ICollection<TEntity> List(Expression<Func<TEntity, bool>> @where);
 
         /// <summary>
-        /// Returns List of rows found matching with condition
-        /// </summary>
-        /// <param name="queryInfo">
-        /// query Information condition on <see cref="TEntity"/>.
-        /// </param>
-        /// <typeparam name="T">
-        /// <see cref="TEntity"/>. Entity 
-        /// </typeparam>
-        /// <returns>
-        /// IQueryable base on T Entity
-        /// </returns>
-        ICollection<TEntity> List(IQueryable<TEntity> queryInfo);
-
-        /// <summary>
         /// Query method will return IQueryable to Repository.
         /// </summary>
         /// <param name="where">
@@ -83,21 +69,7 @@ namespace AgeRanger.Repository
         /// <returns>
         /// IQueryable base on T Entity
         /// </returns>
-        IQueryable<TEntity> Query(IQueryable<Func<TEntity, bool>> @where);
-
-        /// <summary>
-        /// Query method will return IQueryable to Repository.
-        /// </summary>
-        /// <param name="queryInfo">
-        /// query Information condition on <see cref="TEntity"/>.
-        /// </param>
-        /// <typeparam name="T">
-        /// <see cref="TEntity"/>. Entity 
-        /// </typeparam>
-        /// <returns>
-        /// IQueryable base on T Entity
-        /// </returns>
-        IQueryable<TEntity> Query(IQueryable<TEntity> queryInfo);
+        IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> @where);
 
         /// <summary>
         /// SaveOrUpdate
@@ -120,23 +92,7 @@ namespace AgeRanger.Repository
         /// The <see cref="TEntity"/>.
         /// </returns>
         TEntity ForceSaveOrUpdateImmediately(TEntity entity);
-
-        /// <summary>
-        /// Delete Object by updating isDelete = true
-        /// </summary>
-        /// <param name="entity">
-        /// The entity with isDelete = true
-        /// </param>
-        TEntity Delete(TEntity entity);
-
-        /// <summary>
-        /// Delete Object by updating isDelete = true
-        /// </summary>
-        /// <param name="where">
-        /// condition.
-        /// </param>
-        void DeleteRecord(Expression<Func<TEntity, bool>> @where);
-
+                
         void DeleteById(long id);
     }
 }

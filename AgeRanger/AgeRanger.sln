@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeRange.UnitTest", "Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeRange.IntegrationTest", "Tests\AgeRange.IntegrationTest\AgeRange.IntegrationTest.csproj", "{28D786A9-FD9A-4004-8ED0-EEE5CA6E401E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeRange.E2ETest", "Tests\AgeRange.E2ETest\AgeRange.E2ETest.csproj", "{62E84B97-0478-45B1-8DB9-8964AC497831}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeRange.AcceptanceTest", "Tests\AgeRange.AcceptanceTest\AgeRange.AcceptanceTest.csproj", "{659A37B1-9F04-43A4-882D-9F789ED7431E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +57,10 @@ Global
 		{28D786A9-FD9A-4004-8ED0-EEE5CA6E401E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D786A9-FD9A-4004-8ED0-EEE5CA6E401E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D786A9-FD9A-4004-8ED0-EEE5CA6E401E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62E84B97-0478-45B1-8DB9-8964AC497831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62E84B97-0478-45B1-8DB9-8964AC497831}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62E84B97-0478-45B1-8DB9-8964AC497831}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62E84B97-0478-45B1-8DB9-8964AC497831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{659A37B1-9F04-43A4-882D-9F789ED7431E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659A37B1-9F04-43A4-882D-9F789ED7431E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659A37B1-9F04-43A4-882D-9F789ED7431E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659A37B1-9F04-43A4-882D-9F789ED7431E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +68,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8163D9CB-9475-4A4E-9790-4B8408A32BF5} = {3AE9E866-C849-422B-B735-43521710288C}
 		{28D786A9-FD9A-4004-8ED0-EEE5CA6E401E} = {3AE9E866-C849-422B-B735-43521710288C}
-		{62E84B97-0478-45B1-8DB9-8964AC497831} = {3AE9E866-C849-422B-B735-43521710288C}
+		{659A37B1-9F04-43A4-882D-9F789ED7431E} = {3AE9E866-C849-422B-B735-43521710288C}
 	EndGlobalSection
 EndGlobal
