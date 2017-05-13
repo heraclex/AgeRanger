@@ -186,8 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Config\AutofacBootstrapper.cs" />
-    <Compile Include="App_Config\AutofacControllerFactory.cs" />
-    <Compile Include="App_Config\AutofacDependenceResolver.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -209,7 +207,6 @@
     <Content Include="app\services\personService.js" />
     <Content Include="app\views\editPersonPopup.html" />
     <Content Include="app\views\addPersonPopup.html" />
-    <Content Include="App_Config\Readme.txt" />
     <Content Include="app\common\helper.js" />
     <Content Include="app\common\httpStatusCode.js" />
     <Content Include="app\views\person.html" />

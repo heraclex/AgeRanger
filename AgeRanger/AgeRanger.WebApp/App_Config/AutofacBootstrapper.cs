@@ -20,17 +20,7 @@ namespace AgeRanger.WebApp
     public class AutofacBootstrapper
     {
         #region Static Fields
-
-        /// <summary>
-        /// Interface Controller type.
-        /// </summary>
-        private static readonly Type IControllerType = typeof(IController);
         
-        /// <summary>
-        /// Interface Controller type.
-        /// </summary>
-        private static readonly Type ApiControllerType = typeof(ApiController);
-
         /// <summary>
         ///     The log4net logger instance.
         /// </summary>
@@ -58,10 +48,7 @@ namespace AgeRanger.WebApp
         /// </summary>
         public void DoStart()
         {
-            this.Start();
-
-            // Set dependence resolver for System.Web.Mvc.DepenceResolver
-            //DependencyResolver.SetResolver(new AutofacDependenceResolver(this.container, DependencyResolver.Current));
+            this.Start();            
 
             // Configure Web API with the dependency resolver.
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
@@ -69,28 +56,21 @@ namespace AgeRanger.WebApp
 
         private void Start()
         {
-            this.RegisterServiceComponents();
-            this.RegisterWebComponents();
-            this.ConfigureIoc();
+            this.RegisterComponents();           
+
+            //Configure IOC container
+            this.container = this.builder.Build();
         }
 
         #region Register For Autofac
 
-        /// <summary>
-        ///     Configure IOC container
-        /// </summary>
-        private void ConfigureIoc()
-        {
-            this.container = this.builder.Build();
-        }
-
-        private void RegisterServiceComponents()
+        private void RegisterComponents()
         {
             // Register for Db Context
             var connectionString = ConfigurationManager.ConnectionStrings["LocalDb"].ConnectionString;
             this.builder.RegisterType(typeof(AgeRangerDbContext))
                 .WithParameter((pi, c) => pi.ParameterType == typeof(string), (pi, c) => connectionString).AsSelf();
-            this.logger.InfoFormat("--- Register {0}", typeof(AgeRangerDbContext).Name);
+            this.logger.InfoFormat("Register {0}", typeof(AgeRangerDbContext).Name);
 
             // Register for Repository
             this.builder.RegisterGeneric(typeof(AgeRangeRepository<>).GetGenericTypeDefinition())
@@ -98,27 +78,15 @@ namespace AgeRanger.WebApp
                     .WithParameter(
                         (pi, c) => pi.ParameterType == typeof(AgeRangerDbContext),
                         (pi, c) => c.Resolve<AgeRangerDbContext>()).AsImplementedInterfaces();
+            this.logger.InfoFormat("Register {0}", typeof(AgeRangeRepository<>).Name);
 
             // Register for Service
             builder.RegisterType<AgeRanger.Service.Implementation.AgeRangeService>().As<AgeRanger.Service.Contract.IAgeRangeService>().InstancePerApiRequest();
-            this.logger.InfoFormat("--- Register {0}", typeof(AgeRangeRepository<>).Name);
-        }
-
-        private void RegisterWebComponents()
-        {
-            // Register controllers all at once using assembly scanning...
-            // Don't need using DI for normal controller
-            //this.builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            this.logger.InfoFormat("Register {0}", typeof(AgeRanger.Service.Implementation.AgeRangeService).Name);
 
             // Only apply for API controller
             this.builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-
-            var types = this.GetType().Assembly.GetTypes().Where(type => !type.IsAbstract).ToList();            
-
-            //this.builder.RegisterType<AutofacControllerFactory>().As<IControllerFactory>().SingleInstance();
-            this.logger.InfoFormat("--- Register {0}", (typeof(AutofacControllerFactory)).Name);
-            
-            this.logger.Info("Register Web Components is completed");
+            this.logger.Info("Register API controllers");
         }
 
         #endregion
