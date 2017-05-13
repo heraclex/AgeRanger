@@ -3,8 +3,7 @@ if (!ageRange["clientApp"]) { ageRange.clientApp = {}; }
 (function () {
     'use strict';
     // register external module
-    ageRange.clientApp = angular.module('clientApp',
-        ['ngRoute', 'ui.bootstrap', 'kendo.directives']);
+    ageRange.clientApp = angular.module('clientApp', ['ngRoute', 'ui.bootstrap']);
 
     // Global Configuration
     ageRange.clientApp.config(function ($routeProvider, $locationProvider, $httpProvider) {
@@ -14,7 +13,7 @@ if (!ageRange["clientApp"]) { ageRange.clientApp = {}; }
             .otherwise({ redirectTo: '/home' });
 
         $locationProvider.html5Mode(true);
-        $httpProvider.defaults.timeout = 60000;
+        $httpProvider.defaults.timeout = 6000;
         $httpProvider.interceptors.push('AppInterceptor');
     });
 

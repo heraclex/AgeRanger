@@ -11,7 +11,7 @@ namespace AgeRanger.Service.Contract
     /// <summary>
     /// Represents for Service contract
     /// </summary>
-    public interface IService : IDisposable
+    public interface IAgeRangeService : IDisposable
     {
         /// <summary>
         /// Add/Edit a person

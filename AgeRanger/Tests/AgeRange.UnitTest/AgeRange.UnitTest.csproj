@@ -61,11 +61,14 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\TestingDataDource.cs" />
     <Compile Include="Service\BaseServiceTest.cs" />
-    <Compile Include="Service\ServiceTest.cs" />
+    <Compile Include="Service\AgeRangeServiceTest.cs" />
     <Compile Include="WebApp\BaseControllerTest.cs" />
     <Compile Include="WebApp\Controllers\HomeControllerTest.cs" />
     <Compile Include="WebApp\ApiControllers\PersonApiControllerTest.cs" />

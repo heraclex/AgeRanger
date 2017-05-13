@@ -15,14 +15,14 @@ namespace AgeRange.UnitTest.Service
     [TestClass]
     public class BaseServiceTest
     {
-        protected Mock<IRepository<Person>> mockPersonRepository;
-        protected Mock<IRepository<AgeGroup>> mockAgeGroupRepository;
+        protected Mock<IAgeRangeRepository<Person>> mockPersonRepository;
+        protected Mock<IAgeRangeRepository<AgeGroup>> mockAgeGroupRepository;
 
         [TestInitialize]
         public virtual void Setup()
         {
-            this.mockPersonRepository = new Mock<IRepository<Person>>();
-            this.mockAgeGroupRepository = new Mock<IRepository<AgeGroup>>();
+            this.mockPersonRepository = new Mock<IAgeRangeRepository<Person>>();
+            this.mockAgeGroupRepository = new Mock<IAgeRangeRepository<AgeGroup>>();
 
             this.AgeGroupRepoSetup();
             this.PersonRepoSetup();

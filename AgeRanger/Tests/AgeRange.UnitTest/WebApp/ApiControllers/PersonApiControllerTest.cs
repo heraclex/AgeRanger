@@ -188,5 +188,11 @@ namespace AgeRange.UnitTest.WebApp.ApiControllers
             Assert.IsTrue(response.TryGetContentValue(out PersonModel returnedModel));
             Assert.IsTrue(returnedModel.FirstName.Equals(personModel.FirstName));
         }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            // Remove resource
+        }
     }
 }

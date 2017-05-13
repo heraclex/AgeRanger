@@ -47,10 +47,10 @@
     <Compile Include="Common\AutoMapperExtensions.cs" />
     <Compile Include="Contract\Models\AgeGroupModel.cs" />
     <Compile Include="Contract\Models\PersonModel.cs" />
-    <Compile Include="Contract\IService.cs" />
+    <Compile Include="Contract\IAgeRangeService.cs" />
     <Compile Include="Implementation\AutoMapperProfiles\AgeGroupProfile.cs" />
     <Compile Include="Implementation\AutoMapperProfiles\PersonProfile.cs" />
-    <Compile Include="Implementation\Service.cs" />
+    <Compile Include="Implementation\AgeRangeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -13,13 +13,13 @@ namespace AgeRanger.Service.Implementation
     /// <summary>
     /// Represents for Service layer which is responsible for business logic
     /// </summary>
-    public class Service : IService
+    public class AgeRangeService : IAgeRangeService
     {
 
-        private readonly IRepository<AgeGroup> ageGroupRepo;
-        private readonly IRepository<Person> personRepo;
+        private readonly IAgeRangeRepository<AgeGroup> ageGroupRepo;
+        private readonly IAgeRangeRepository<Person> personRepo;
 
-        public Service(IRepository<AgeGroup> ageGroupRepo, IRepository<Person> personRepo)
+        public AgeRangeService(IAgeRangeRepository<AgeGroup> ageGroupRepo, IAgeRangeRepository<Person> personRepo)
         {
             this.ageGroupRepo = ageGroupRepo;
             this.personRepo = personRepo;
@@ -66,7 +66,7 @@ namespace AgeRanger.Service.Implementation
                 }                
             }
 
-            return result;
+            return result.OrderByDescending(x=>x.Id);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace AgeRanger.Service.Implementation
 
         private IEnumerable<AgeGroup> GetAgeGroupsByAgeRange(long minAge, long maxAge)
         {
-            return this.ageGroupRepo.Query(g => (!g.MaxAge.HasValue && g.MinAge.Value <= minAge)
+            return this.ageGroupRepo.Query(g => (!g.MaxAge.HasValue && g.MinAge.Value <= maxAge)
             || (g.MaxAge.HasValue && g.MaxAge.Value >= minAge && g.MinAge.Value <= maxAge)).ToList();
         }
 

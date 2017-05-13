@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 namespace AgeRange.UnitTest.Service
 {
     [TestClass]
-    public class ServiceTest : BaseServiceTest
+    public class AgeRangeServiceTest : BaseServiceTest
     {
         [TestMethod]
         public void TestGetAllPerson()
         {
             //Arrange            
-            var service = new AgeRanger.Service.Implementation.Service(
+            var service = new AgeRanger.Service.Implementation.AgeRangeService(
                 this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
 
             // Act
@@ -35,7 +35,7 @@ namespace AgeRange.UnitTest.Service
         public void TestFindPersonWithExistingName()
         {
             // Arrange
-            var service = new AgeRanger.Service.Implementation.Service(
+            var service = new AgeRanger.Service.Implementation.AgeRangeService(
                 this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
 
             // Act
@@ -50,7 +50,7 @@ namespace AgeRange.UnitTest.Service
         {
             // Agrange
             var newPersonModel = TestingDataDource.ValidNewPersonModel;
-            var service = new AgeRanger.Service.Implementation.Service(
+            var service = new AgeRanger.Service.Implementation.AgeRangeService(
                 this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
 
             //Act
@@ -66,7 +66,7 @@ namespace AgeRange.UnitTest.Service
             // Agrange
             var exixtedPersonModel = TestingDataDource.ExistingPersonModel;
             exixtedPersonModel.FirstName = exixtedPersonModel.FirstName + " Edited";
-            var service = new AgeRanger.Service.Implementation.Service(
+            var service = new AgeRanger.Service.Implementation.AgeRangeService(
                 this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
 
             //Act
@@ -80,7 +80,7 @@ namespace AgeRange.UnitTest.Service
         public void TestGetSpecificPersonWithInvalidName()
         {
             // Arrange
-            var service = new AgeRanger.Service.Implementation.Service(
+            var service = new AgeRanger.Service.Implementation.AgeRangeService(
                 this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
 
             // Act
@@ -95,6 +95,12 @@ namespace AgeRange.UnitTest.Service
         public void TestDeleteExistingPerson()
         {
             throw new NotImplementedException();
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            // Remove resource
         }
     }
 }

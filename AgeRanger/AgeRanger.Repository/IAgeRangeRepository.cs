@@ -14,7 +14,7 @@ namespace AgeRanger.Repository
     /// </summary>
     /// <typeparam name="TEntity">
     /// </typeparam>
-    public interface IRepository<TEntity> : IDisposable where TEntity : class
+    public interface IAgeRangeRepository<TEntity> : IDisposable where TEntity : class
     {
         /// <summary>
         /// Returns null if a row is not found matching the provided Id.

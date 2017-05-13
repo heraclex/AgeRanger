@@ -12,7 +12,7 @@
                 if (popupViewModel.Form.$valid && popupViewModel.Form.$dirty) {
                     personService.updatePerson(popupViewModel.personModel).then(function (response) {
                         if (response.status == httpStatusCode.OK) {
-                            $uibModalInstance.close("success");
+                            $uibModalInstance.close({ message: "success", data: response.data });
                         }
                     }, function (errorReponse) {
                         toastr.error(errorReponse.data, errorReponse.statusText, { preventDuplicates: true })

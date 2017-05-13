@@ -18,7 +18,7 @@
                 if (popupViewModel.Form.$valid) {
                     personService.addPerson(popupViewModel.personModel).then(function (response) {
                         if (response.status == httpStatusCode.Created && response.data.Id > 0) {
-                            $uibModalInstance.close("success");
+                            $uibModalInstance.close({ message: "success", data: response.data});
                         }
                     }, function (errorReponse) {
                         toastr.error(errorReponse.data, errorReponse.statusText, { preventDuplicates: true })

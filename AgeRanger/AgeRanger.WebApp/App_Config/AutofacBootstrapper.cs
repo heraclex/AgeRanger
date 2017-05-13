@@ -93,15 +93,15 @@ namespace AgeRanger.WebApp
             this.logger.InfoFormat("--- Register {0}", typeof(AgeRangerDbContext).Name);
 
             // Register for Repository
-            this.builder.RegisterGeneric(typeof(Repository<>).GetGenericTypeDefinition())
-                    .As(typeof(IRepository<>))
+            this.builder.RegisterGeneric(typeof(AgeRangeRepository<>).GetGenericTypeDefinition())
+                    .As(typeof(IAgeRangeRepository<>))
                     .WithParameter(
                         (pi, c) => pi.ParameterType == typeof(AgeRangerDbContext),
                         (pi, c) => c.Resolve<AgeRangerDbContext>()).AsImplementedInterfaces();
 
             // Register for Service
-            builder.RegisterType<AgeRanger.Service.Implementation.Service>().As<AgeRanger.Service.Contract.IService>().InstancePerApiRequest();
-            this.logger.InfoFormat("--- Register {0}", typeof(Repository<>).Name);
+            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangeService>().As<AgeRanger.Service.Contract.IAgeRangeService>().InstancePerApiRequest();
+            this.logger.InfoFormat("--- Register {0}", typeof(AgeRangeRepository<>).Name);
         }
 
         private void RegisterWebComponents()

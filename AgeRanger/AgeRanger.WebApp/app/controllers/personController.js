@@ -19,8 +19,10 @@
                 });
 
                 modalInstance.result.then(function (callbackValue) {
-                    if (callbackValue == "success") {
+                    if (callbackValue.message == "success") {
                         loadPersonDataSource();
+                        toastr.success(callbackValue.data.FirstName + ", " + callbackValue.data.LastName + " has been added with #" + callbackValue.data.Id,
+                            "Success", { positionClass: "toast-bottom-right", preventDuplicates: true });
                     }
                 }, function () {});
             }; 
@@ -42,8 +44,10 @@
                 });
 
                 modalInstance.result.then(function (callbackValue) {
-                    if (callbackValue == "success") {
+                    if (callbackValue.message == "success") {
                         loadPersonDataSource();
+                        toastr.success("(#" + callbackValue.data.Id + ") " + callbackValue.data.FirstName + ", " + callbackValue.data.LastName + " has been updated",
+                            "Success", { positionClass: "toast-bottom-right", preventDuplicates: true });
                     }
                 }, function () { });
             }; 

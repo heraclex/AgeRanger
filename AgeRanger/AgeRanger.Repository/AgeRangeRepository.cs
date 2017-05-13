@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace AgeRanger.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
+    public class AgeRangeRepository<TEntity> : IAgeRangeRepository<TEntity> where TEntity : EntityBase
     {
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Repository{TEntity}"/> class.
+        /// Initializes a new instance of the <see cref="AgeRangeRepository{TEntity}"/> class.
         /// </summary>
         /// <param name="dbContext">
         /// The db context.
         /// </param>
-        public Repository(AgeRangerDbContext dbContext)
+        public AgeRangeRepository(AgeRangerDbContext dbContext)
         {
             if (dbContext == null)
             {

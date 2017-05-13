@@ -14,9 +14,9 @@ namespace AgeRanger.WebApp.Controllers.Api
     public class PersonController : ApiController
     {
 
-        private readonly IService service;
+        private readonly IAgeRangeService service;
 
-        public PersonController(IService service)
+        public PersonController(IAgeRangeService service)
         {
             this.service = service;
         }
