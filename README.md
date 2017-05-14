@@ -7,7 +7,7 @@ NOTE: you can see file Summary.pdf for more detail, include Architechture Design
 	2. Databases\IntegrationTestDb\AgeRanger.db for running integration tests. No need to change ConnectionString
 	3. Databases\AcceptanceTestDb\AgeRanger.db for running acceptance tests. Remember change connectionString in AgeRange\AgeRanger.WebApp\ConnectionString.config and point it to this database when perform Acceptance test.
 
-#Development Environment#
+# Development Environment
 	- Visual Studio 2017 Pro.
 	- Git.
 	
