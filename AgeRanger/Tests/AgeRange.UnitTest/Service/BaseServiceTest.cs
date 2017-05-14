@@ -61,6 +61,13 @@ namespace AgeRange.UnitTest.Service
                    return entity;
                });
 
+            this.mockPersonRepository.Setup(m => m.DeleteById(It.IsAny<long>())).Callback((long id) =>
+            {
+                if (TestingDataDource.PersonList.Any(x => x.Id == id))
+                {
+                    throw new Exception();
+                }
+            }).Verifiable();
         }
     }
 }

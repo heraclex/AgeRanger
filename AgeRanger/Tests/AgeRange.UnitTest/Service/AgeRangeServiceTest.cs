@@ -64,16 +64,16 @@ namespace AgeRange.UnitTest.Service
         public void TestEditExistingPerson()
         {
             // Agrange
-            var exixtedPersonModel = TestingDataDource.ExistingPersonModel;
-            exixtedPersonModel.FirstName = exixtedPersonModel.FirstName + " Edited";
+            var existingPersonModel = TestingDataDource.ExistingPersonModel;
+            existingPersonModel.FirstName = existingPersonModel.FirstName + " Edited";
             var service = new AgeRanger.Service.Implementation.AgeRangeService(
                 this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
 
             //Act
-            var returnedModel = service.SavePerson(exixtedPersonModel);
+            var returnedModel = service.SavePerson(existingPersonModel);
 
             // Assert
-            Assert.IsTrue(returnedModel.FirstName.Equals(exixtedPersonModel.FirstName));
+            Assert.IsTrue(returnedModel.FirstName.Equals(existingPersonModel.FirstName));
         }
 
         [TestMethod]
@@ -90,11 +90,15 @@ namespace AgeRange.UnitTest.Service
             Assert.IsTrue(result.Count() == 0);
         }
 
-        [Ignore]
-        [TestMethod]        
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Verify the Delete Method on Repo was called")]
         public void TestDeleteExistingPerson()
         {
-            throw new NotImplementedException();
+            // Arrange
+            var exixtedPersonModel = TestingDataDource.ExistingPersonModel;
+            var service = new AgeRanger.Service.Implementation.AgeRangeService(
+                this.mockAgeGroupRepository.Object, this.mockPersonRepository.Object);
+            service.DeletePersonById(exixtedPersonModel.Id);
         }
 
         [TestCleanup]

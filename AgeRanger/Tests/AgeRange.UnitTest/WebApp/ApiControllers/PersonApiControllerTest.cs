@@ -189,6 +189,39 @@ namespace AgeRange.UnitTest.WebApp.ApiControllers
             Assert.IsTrue(returnedModel.FirstName.Equals(personModel.FirstName));
         }
 
+        [TestMethod]
+        public void TestDeleteExistingPerson()
+        {
+            // Agrange
+            var personModel = TestingDataDource.ExistingPersonModel;
+            var controller = new PersonController(this.mockService.Object);
+            controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
+
+            //Act
+            var response = controller.Delete(personModel.Id);
+
+            // Assert
+            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.OK);
+            Assert.IsTrue(response.TryGetContentValue(out long deletedId));
+            Assert.AreEqual(personModel.Id, deletedId);
+        }
+
+        [TestMethod]
+        public void TestDeleteInvalidPerson()
+        {
+            // Agrange            
+            var controller = new PersonController(this.mockService.Object);
+            controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
+
+            //Act
+            var response = controller.Delete(-1);
+
+            // Assert
+            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NotFound);
+        }
+
         [TestCleanup]
         public void TearDown()
         {

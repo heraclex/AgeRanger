@@ -25,11 +25,16 @@
             return $http.post(targetUrl, personModel);
         };
 
+        var deletePerson = function (id) {
+            return $http.delete(personApiUrl + "/delete/" + id);
+        };
+
         return {
             getPerson: getPerson,
             filter: filter,
             addPerson: addPerson,
             updatePerson: updatePerson,
+            deletePerson: deletePerson
         };
     };
 

@@ -35,6 +35,7 @@
                                 <th>Age</th>
                                 <th>Age Group</th>
                                 <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,9 +45,16 @@
                                 <td>{{person.LastName}}</td>
                                 <td>{{person.Age}}</td>
                                 <td>{{person.AgeGroup}}</td>
-                                <td>
+                                <!--Edit Command-->
+                                <td>                                    
                                     <a class="btn btn-xs btn-success" ng-click="viewModel.editPerson(person)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                                <!--Delete Command-->
+                                <td>
+                                    <a class="btn btn-xs btn-warning" ng-click="viewModel.deletePerson(person.Id)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 </td>
                             </tr>

@@ -68,6 +68,7 @@ namespace AgeRanger.WebApp.Controllers.Api
             return response;
         }
 
+        // POST: api/person/update/{filter}
         [Route("api/person/update/{id}")]
         [HttpPost]
         public HttpResponseMessage Update(long id, PersonModel personModel)
@@ -86,6 +87,21 @@ namespace AgeRanger.WebApp.Controllers.Api
 
             var personModelCreated = this.service.SavePerson(personModel);
             var response = Request.CreateResponse(HttpStatusCode.OK, personModelCreated);
+            return response;
+        }
+
+        // DELTE: api/person/delete/{id}
+        [Route("api/person/delete/{id}")]
+        public HttpResponseMessage Delete(long id)
+        {
+            if (!this.service.IsPersonExisted(id))
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            this.service.DeletePersonById(id);
+
+            var response = Request.CreateResponse(HttpStatusCode.OK, id);
             return response;
         }
     }

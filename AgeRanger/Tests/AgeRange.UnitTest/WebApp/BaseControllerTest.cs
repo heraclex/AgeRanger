@@ -55,6 +55,9 @@ namespace AgeRange.UnitTest.WebApp
             {
                 return TestingDataDource.PersonModelList.FirstOrDefault(x => x.Id == id);
             });
+
+            // Mock GetPerson By Id Method on Service
+            mockService.Setup(m => m.DeletePersonById(It.IsAny<long>())).Verifiable();
         }
     }
 }

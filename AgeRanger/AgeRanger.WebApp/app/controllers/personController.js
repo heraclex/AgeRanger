@@ -52,6 +52,18 @@
                 }, function () { });
             }; 
 
+            var deletePerson = function (id) {
+                personService.deletePerson(id).then(function (response) {
+                    if (response.status == httpStatusCode.Created && response.data.Id > 0) {
+                        toastr.success("Person with ID #" + response.data.Id + " is permanent deleted",
+                            "Success", { positionClass: "toast-bottom-right", preventDuplicates: true });
+                        loadPersonDataSource();
+                    }
+                }, function (errorReponse) {
+                    toastr.error(errorReponse.data, errorReponse.statusText, { preventDuplicates: true })
+                });
+            }; 
+
             return {
                 search: "",
                 init: init,
@@ -62,6 +74,7 @@
                 },
                 addNewPerson: addNewPerson,
                 editPerson: editPerson,
+                deletePerson: deletePerson
             };
 
             function loadPersonDataSource(filter) {

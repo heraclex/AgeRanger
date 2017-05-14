@@ -34,6 +34,13 @@ namespace AgeRanger.Service.Contract
         PersonModel GetPersonById(long id);
 
         /// <summary>
+        /// Delete Person By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True if success</returns>
+        void DeletePersonById(long id);
+
+        /// <summary>
         /// Verify Person by Id
         /// </summary>
         /// <param name="id"></param>

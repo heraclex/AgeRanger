@@ -85,6 +85,16 @@ namespace AgeRanger.Service.Implementation
             return this.personRepo.Query(x => x.Id == id).Any();
         }
 
+        /// <summary>
+        /// Delete Person By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True if success</returns>
+        public void DeletePersonById(long id)
+        {
+            this.personRepo.DeleteById(id);
+        }
+
         public void Dispose()
         {
             GC.SuppressFinalize(this);
