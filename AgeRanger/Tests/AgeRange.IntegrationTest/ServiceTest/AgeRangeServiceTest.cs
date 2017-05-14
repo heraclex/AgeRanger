@@ -64,24 +64,33 @@ namespace AgeRange.IntegrationTest.ServiceTest
         {
             // Arrange
             var service = this.autofacScope.Resolve<IAgeRangeService>();
-            var personTestId = 1;
-            var person = service.GetPersonById(personTestId);
+            // Create Person for testing
+            var newPersonModel = service.SavePerson(new PersonModel()
+            {
+                FirstName = "Newbie",
+                LastName = "Test",
+                Age = 100
+            });
 
-            // Act
-            person.FirstName = person.FirstName + "-Edited-";
-            service.SavePerson(person);
+            Assert.IsTrue(newPersonModel.Id > 0);
 
-            var eidtedPerson = service.GetPersonById(personTestId);
+            // Get Existing Person
+            var editingPersonModel = service.GetPersonById(newPersonModel.Id);
+
+            // [Action]: change and save data
+            editingPersonModel.FirstName = editingPersonModel.FirstName + "-Edited-";
+            service.SavePerson(editingPersonModel);
+
             // Assert
-            Assert.AreNotEqual(eidtedPerson, person);
+            var editedPersonModel = service.GetPersonById(editingPersonModel.Id);
+            Assert.AreEqual(editedPersonModel.Id, newPersonModel.Id);
+            Assert.AreNotEqual(editedPersonModel.FirstName, newPersonModel.FirstName);
 
             // Clean up data test
-            eidtedPerson.FirstName = eidtedPerson.FirstName.Replace("-Edited-", "");
-            service.SavePerson(person);
+            service.DeletePersonById(editedPersonModel.Id);
         }
 
         // All Testcases adding new records into db will be hold until find out the bug related to casting type on DbContext
-        [Ignore]
         [TestMethod]
         public void TestAddNewPerson()
         {
@@ -95,17 +104,20 @@ namespace AgeRange.IntegrationTest.ServiceTest
             };
             // Act
             var returnedPersonModel = service.SavePerson(personModel);
-
+            
             // Assert
             Assert.AreNotEqual(0, returnedPersonModel.Id);
             Assert.IsTrue(returnedPersonModel.AgeGroup != string.Empty);
-            Assert.AreNotEqual(personModel, returnedPersonModel);
+
+            // Remove dummy data
+            // should use dbContext instead
+            service.DeletePersonById(returnedPersonModel.Id);
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            // BUG: got error casting type when perform dbContext here.
+            // BUG: got error casting type when perform query on dbContext here.
             //using (var context = this.autofacScope.Resolve<AgeRangerDbContext>() as AgeRangerDbContext)
             //{
             //    var ageGroups = context.Set<AgeGroup>().AsQueryable().ToList();
