@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AgeRanger.Service.Contract;
 using AgeRanger.Service.Contract.Models;
 using AgeRanger.Repository;
 using AgeRanger.DbContext.Entities;
+using AgeRanger.Service.ModelMappers;
 
 namespace AgeRanger.Service.Implementation
 {

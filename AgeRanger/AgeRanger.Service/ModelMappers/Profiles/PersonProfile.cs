@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgeRanger.Service.Implementation.AutoMapperProfiles
+namespace AgeRanger.Service.ModelMappers.Profiles
 {
     public class PersonProfile : AutoMapper.Profile
     {

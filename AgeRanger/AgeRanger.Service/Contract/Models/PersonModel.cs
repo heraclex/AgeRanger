@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AgeRanger.Service.Contract.Models
 {
     /// <summary>
-    /// Data Transfer Object Person. THis object will transfer to client side
+    /// Data Transfer Object Person. THis object will be transfered to client side
     /// </summary>
     public  class PersonModel
     {

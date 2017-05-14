@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\AutoMapperExtensions.cs" />
+    <Compile Include="ModelMappers\AutoMapperExtensions.cs" />
     <Compile Include="Contract\Models\AgeGroupModel.cs" />
     <Compile Include="Contract\Models\PersonModel.cs" />
     <Compile Include="Contract\IAgeRangeService.cs" />
-    <Compile Include="Implementation\AutoMapperProfiles\AgeGroupProfile.cs" />
-    <Compile Include="Implementation\AutoMapperProfiles\PersonProfile.cs" />
+    <Compile Include="ModelMappers\Profiles\AgeGroupProfile.cs" />
+    <Compile Include="ModelMappers\Profiles\PersonProfile.cs" />
     <Compile Include="Implementation\AgeRangeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

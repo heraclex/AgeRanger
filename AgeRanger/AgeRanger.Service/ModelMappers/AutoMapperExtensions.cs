@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using AutoMapper;
 
-namespace AgeRanger.Service
+namespace AgeRanger.Service.ModelMappers
 {
     /// <summary>
     /// Auto mapper extensions.
