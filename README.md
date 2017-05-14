@@ -5,11 +5,12 @@ NOTE: you can see file Summary.pdf for more detail, include Architechture Design
 - Database: there were 3 *.db files:
 	1. Databases\RunningDb\AgeRanger.db : for development 
 	2. Databases\IntegrationTestDb\AgeRanger.db for running integration tests. No need to change ConnectionString
-	3. Databases\AcceptanceTestDb\AgeRanger.db for running acceptance tests. Remember change connectionString in AgeRange/AgeRanger.WebApp/ConnectionString.config and point it to this database when perform Acceptance test.
+	3. Databases\AcceptanceTestDb\AgeRanger.db for running acceptance tests. Remember change connectionString in AgeRange\AgeRanger.WebApp\ConnectionString.config and point it to this database when perform Acceptance test.
 
-##Development Environment##
-
-- Visual Studio 2017 Pro.
+#Development Environment#
+	- Visual Studio 2017 Pro.
+	- Git.
+	
 # Back End:
 	- ASP.Net MVC 5 & Web API 2.
  	- .Net Framework 4.5.2
