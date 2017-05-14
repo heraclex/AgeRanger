@@ -1,3 +1,77 @@
+NOTE: you can see file Summary.pdf for more detail, include Architechture Design
+
+# Introduction
+Restore NuGet packages before building solution.
+Database: there were 3 *.db files:
+	1. Databases\RunningDb\AgeRanger.db : for development 
+	2. Databases\IntegrationTestDb\AgeRanger.db for running integration tests. No need to change ConnectionString
+	3. Databases\AcceptanceTestDb\AgeRanger.db for running acceptance tests. Remember change connectionString in AgeRange/AgeRanger.WebApp/ConnectionString.config and point it to this database when perform Acceptance test.
+
+##Development Environment##
+
+- Visual Studio 2017 Pro.
+# Back End:
+	- ASP.Net MVC 5 & Web API 2.
+ 	- .Net Framework 4.5.2
+ 	- Autofac (DI)
+ 	- Log4Net
+ 	- EntityFramework 6
+ 	- SQLite 3
+# Front End:
+	- Angularjs 1.6 && angular-ui
+	- Twitter Boostrap 3
+	- toastrjs (john papa)(popup notifier)
+# Testing:
+	- Moq
+	- Microsoft VS Test Framework
+	- Selenium
+
+**Business Requirements**
+
+1. [Done] Displays a list of people in the DB with their First and Last names, age and their age group.
+2. [Done] Search for a person by his/her first or last name and displays all relevant information for the person - first and last names, age, age group.
+3. [Done] Add a new person - every person has the first name, last name, and age;
+4. [Done] Edit existing person records and expose a WEB API
+5. [Done] Delete an existing person.
+6. [Done] All Unit Test are covered.
+7. [ToDo] Migrating Data to SQL Server.
+
+**System Design Requirements**
+1. [Done] Single Page Application (Refer to ../AgeRange.WebApp/app/app.js)
+2. [Done] Unit testing with all cases covered.
+3. [Done] Integration testing. 
+4. [Done] Acceptance testing. 
+
+**Solution Structure**
+
+* Projects
+
+- AgeRanger.WebApp - Presentation layer with ASP.NET MVC Web Site with a SPA using AngularJS. Perform all UI logic.
+- AgeRanger.Service - Domain Model and Service. Service is responsible for perform business logic and return Domain Model included all information that Presentation layer need. 
+- AgeRanger.Repository - Generic of Data access layer (as a wrapper). Accessing to Db to retreive data.
+- AgeRanger.DbContext - Use EF6 and SQLite to communicate with Db. All entities and Entity-Mappings are defined here.
+- AgeRanger.DataBaseSchema - Project for DBA to migrate data to SQL Server.
+
+* Test Projects
+
+- AgeRange.Tests.UnitTest : Test all methods with no dependencies
+- AgeRange.Tests.IntegrationTest: Start test point from service layers to database: Service->Repository->Db
+- AgeRange.Tests.AcceptanceTest: Automation Test performed by selenium to make sure all feature work well before release time.
+
+**Next Improvements**
+
+1. Security - Security consideration:
+	- JSON Web Token Authentication
+	- Cross Site Anti Forgery
+	- Role Based Security : only administrators have access right to Add/edit.
+
+2. Consistent Error handling and message between contrpllerpi and client
+3. Implement validation at client side
+4. Confirmation popup when delete person
+5. Adding Unit Test in AngularApp
+
+============================================
+
 AgeRanger is a world leading application designed to identify person's age group!
 The only problem with it is... It is not implemented - except a SQLite DB called AgeRanger.db.
 
