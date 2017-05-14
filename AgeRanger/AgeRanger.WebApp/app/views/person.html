@@ -4,8 +4,14 @@
             <div class="col-lg-6">
                 <input type="text" name="searchBox" class="form-control" ng-model="viewModel.search" ng-model-options="{ debounce: 500 }" placeholder="Search People"/>
             </div>
-            <div class="col-lg-6">
-                <button class="btn btn-success pull-right" id="addPersonBtn" type="submit" ng-click="viewModel.addNewPerson()">Add New Person</button>
+            <div class="col-lg-4">
+                
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-success" id="addPersonBtn" ng-click="viewModel.addNewPerson()">Add New Person</button>
+                <button class="btn btn-success" id="refreshBtn" title="Refresh" ng-click="viewModel.reloadPersonDataSource()">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </button>
             </div>
         </div>
     </div>

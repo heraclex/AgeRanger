@@ -36,10 +36,9 @@
                     backdrop: 'static',
                     keyboard: false,
                     resolve: {
-                        dataModel: function () {
-                            // to avoid ref type on the same object
-                            return angular.copy(model);
-                        }
+                        // I don't want to use model object at client to avoiding some changes happend on server
+                        // always get latest data from server
+                        modelId: function () { return model.Id; }
                     }
                 });
 

@@ -1,11 +1,16 @@
 ﻿(function () {
     'use strict';
-    var editPersonModalController = function ($scope, $uibModalInstance, personService, dataModel) {
+    var editPersonModalController = function ($scope, $uibModalInstance, personService, modelId) {
 
         var popupViewModel = function () {
 
             var init = function () {
-                popupViewModel.personModel = dataModel
+                personService.getPerson(modelId).then(function (response) {
+                    popupViewModel.personModel = response.data;
+                }, function (errorReponse) {
+                    toastr.error(errorReponse.data, errorReponse.statusText, { preventDuplicates: true })
+                });
+
             };
 
             var update = function () {
