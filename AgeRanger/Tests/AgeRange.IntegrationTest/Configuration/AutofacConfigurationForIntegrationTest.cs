@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AgeRange.IntegrationTest.Configuration
 {
-    public class AutofacConfigurationForIntegrationTest
+    internal class AutofacConfigurationForIntegrationTest
     {
         #region Static Fields
 
