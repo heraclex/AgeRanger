@@ -54,8 +54,8 @@
 
             var deletePerson = function (id) {
                 personService.deletePerson(id).then(function (response) {
-                    if (response.status == httpStatusCode.Created && response.data.Id > 0) {
-                        toastr.success("Person with ID #" + response.data.Id + " is permanent deleted",
+                    if (response.status == httpStatusCode.OK && response.data > 0) {
+                        toastr.success("Person with ID #" + response.data + " is permanent deleted",
                             "Success", { positionClass: "toast-bottom-right", preventDuplicates: true });
                         loadPersonDataSource();
                     }

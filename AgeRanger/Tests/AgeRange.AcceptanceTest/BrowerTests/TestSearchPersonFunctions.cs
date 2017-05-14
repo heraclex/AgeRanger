@@ -16,7 +16,7 @@ namespace AgeRange.AcceptanceTest.BrowerTests
         public void IsSearchTextBoxAvailable()
         {
             var searchBox = webDriver.FindElement(By.CssSelector("input[name=searchBox]"));
-            Assert.IsTrue(searchBox != null);
+            Assert.IsNotNull(searchBox);
             Assert.IsTrue(searchBox.Enabled);
             Assert.AreEqual(string.Empty, searchBox.Text);
         }
@@ -39,6 +39,7 @@ namespace AgeRange.AcceptanceTest.BrowerTests
         [TestMethod]
         public void FilteringPeopleByFirstOrLastName()
         {
+            this.WaitForElementVisible(By.CssSelector("div[class=table-responsive] table tbody tr"), 3);
             // Arrage
             var totalNumberDisplayOnTable = webDriver.FindElements(By.CssSelector("div[class=table-responsive] table tbody tr")).Count();
             
@@ -48,8 +49,6 @@ namespace AgeRange.AcceptanceTest.BrowerTests
 
             // Waiting for loading data
             Thread.Sleep(2000);
-            // wait for list refresh
-            //this.WaitForElementVisible(By.CssSelector("table tbody tr"), 3);
 
             var tableRows = webDriver.FindElements(By.CssSelector("div[class=table-responsive] table tbody tr"));
 
@@ -58,7 +57,7 @@ namespace AgeRange.AcceptanceTest.BrowerTests
 
             var tableColumns = tableRows.First().FindElements(By.CssSelector("td"));
             // Verify data on record
-            Assert.IsTrue(tableColumns.Count == 6);
+            Assert.IsTrue(tableColumns.Count == 7);
 
             // Baseline: #9	F:'Kitty'	 L:'Nguyen'	Age:203	 Group:'Vampire'
             Assert.AreEqual("9", tableColumns[0].Text); // Verify Id

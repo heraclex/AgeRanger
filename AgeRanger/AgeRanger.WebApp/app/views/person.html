@@ -5,7 +5,7 @@
                 <input type="text" name="searchBox" class="form-control" ng-model="viewModel.search" ng-model-options="{ debounce: 500 }" placeholder="Search People"/>
             </div>
             <div class="col-lg-6">
-                <button class="btn btn-success pull-right" type="submit" ng-click="viewModel.addNewPerson()">Add New Person</button>
+                <button class="btn btn-success pull-right" id="addPersonBtn" type="submit" ng-click="viewModel.addNewPerson()">Add New Person</button>
             </div>
         </div>
     </div>
@@ -47,13 +47,13 @@
                                 <td>{{person.AgeGroup}}</td>
                                 <!--Edit Command-->
                                 <td>                                    
-                                    <a class="btn btn-xs btn-success" ng-click="viewModel.editPerson(person)">
+                                    <a class="btn btn-xs btn-success" id="editPersonBtn-{{person.Id}}" ng-click="viewModel.editPerson(person)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                 </td>
                                 <!--Delete Command-->
                                 <td>
-                                    <a class="btn btn-xs btn-warning" ng-click="viewModel.deletePerson(person.Id)">
+                                    <a class="btn btn-xs btn-warning" id="deletePersonBtn-{{person.Id}}" ng-click="viewModel.deletePerson(person.Id)">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 </td>
