@@ -9,16 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgeRange.IntegrationTest
+namespace AgeRange.IntegrationTest.Configuration
 {
-    public class AutofacBootstrapperForIntegrationTest
+    public class AutofacConfigurationForIntegrationTest
     {
         #region Static Fields
 
         /// <summary>
         ///     The log4net logger instance.
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(typeof(AutofacBootstrapperForIntegrationTest));
+        private readonly ILog logger = LogManager.GetLogger(typeof(AutofacConfigurationForIntegrationTest));
 
         #endregion
 
