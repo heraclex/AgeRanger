@@ -50,7 +50,7 @@
     <Compile Include="Contract\IAgeRangeService.cs" />
     <Compile Include="ModelMappers\Profiles\AgeGroupProfile.cs" />
     <Compile Include="ModelMappers\Profiles\PersonProfile.cs" />
-    <Compile Include="Implementation\AgeRangeService.cs" />
+    <Compile Include="Implementation\AgeRangerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

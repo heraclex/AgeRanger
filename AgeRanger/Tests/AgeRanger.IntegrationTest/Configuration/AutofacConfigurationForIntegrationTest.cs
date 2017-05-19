@@ -1,30 +1,24 @@
-﻿using System;
-using System.Configuration;
-using System.Web.Mvc;
-using System.Web.Http;
-using System.Linq;
-
-using Autofac;
-using Autofac.Integration.WebApi;
-using log4net;
-using AgeRanger.DbContext;
+﻿using AgeRanger.DbContext;
 using AgeRanger.Repository;
-using Autofac.Integration.Mvc;
-using System.Reflection;
+using Autofac;
+using log4net;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AgeRanger.WebApp
+namespace AgeRanger.IntegrationTest.Configuration
 {
-    /// <summary>
-    /// Autofac Bootstrapper Configuration
-    /// </summary>
-    public class AutofacBootstrapper
+    internal class AutofacConfigurationForIntegrationTest
     {
         #region Static Fields
-        
+
         /// <summary>
         ///     The log4net logger instance.
         /// </summary>
-        private readonly ILog logger = LogManager.GetLogger(typeof(AutofacBootstrapper));
+        private readonly ILog logger = LogManager.GetLogger(typeof(AutofacConfigurationForIntegrationTest));
 
         #endregion
 
@@ -39,24 +33,13 @@ namespace AgeRanger.WebApp
         ///     The <see cref="IComponentContext" /> from which services
         ///     should be located.
         /// </summary>
-        private IContainer container;
+        internal IContainer container;
 
         #endregion
-
-        /// <summary>
-        ///     Configure IOC container
-        /// </summary>
+        
         public void DoStart()
         {
-            this.Start();            
-
-            // Configure Web API with the dependency resolver.
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-        }
-
-        private void Start()
-        {
-            this.RegisterComponents();           
+            this.RegisterComponents();
 
             //Configure IOC container
             this.container = this.builder.Build();
@@ -66,8 +49,11 @@ namespace AgeRanger.WebApp
 
         private void RegisterComponents()
         {
+            // using relative path to refer to database files
+            AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test_Data"));
+
             // Register for Db Context
-            var connectionString = ConfigurationManager.ConnectionStrings["LocalDb"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["LocalIntegrationTestDb"].ConnectionString;
             this.builder.RegisterType(typeof(AgeRangerDbContext))
                 .WithParameter((pi, c) => pi.ParameterType == typeof(string), (pi, c) => connectionString).AsSelf();
             this.logger.InfoFormat("Register {0}", typeof(AgeRangerDbContext).Name);
@@ -81,12 +67,8 @@ namespace AgeRanger.WebApp
             this.logger.InfoFormat("Register {0}", typeof(AgeRangerRepository<>).Name);
 
             // Register for Service
-            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangerService>().As<AgeRanger.Service.Contract.IAgeRangeService>().InstancePerApiRequest();
-            this.logger.InfoFormat("Register {0}", typeof(AgeRanger.Service.Implementation.AgeRangerService).Name);
-
-            // Only apply for API controller
-            this.builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            this.logger.Info("Register API controllers");
+            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangerService>().As<AgeRanger.Service.Contract.IAgeRangeService>();
+            this.logger.InfoFormat("Register {0}", typeof(AgeRanger.Service.Implementation.AgeRangerService).Name);            
         }
 
         #endregion
