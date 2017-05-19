@@ -223,9 +223,6 @@ namespace AgeRanger.UnitTest.WebApp.ApiControllers
         }
 
         [TestCleanup]
-        public void TearDown()
-        {
-            // Remove resource
-        }
+        public void TearDown(){}
     }
 }
