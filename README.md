@@ -71,6 +71,23 @@ NOTE: you can see file Summary.pdf for more detail, include Architechture Design
 4. Confirmation popup when delete person
 5. Adding Unit Test in AngularApp
 
+# Adding Interceptor Log all system:
+
+INFO  2017-05-20 14:02:55,619 [44] ApiActionFilters       - ---> [API] Start Executing AgeRanger.WebApp.Controllers.Api.PersonController, action Filter
+INFO  2017-05-20 14:02:55,620 [44] ServiceCallInterceptor - [Service] - Call method: IAgeRangerService.FindPeople ()
+INFO  2017-05-20 14:02:55,620 [44] ositoryCallInterceptor - [Repository] - Call method: IAgeRangerRepository`1.GetAll()
+INFO  2017-05-20 14:02:55,621 [63] ApiActionFilters       - ---> [API] Start Executing AgeRanger.WebApp.Controllers.Api.PersonController, action Filter
+INFO  2017-05-20 14:02:55,622 [63] ServiceCallInterceptor - [Service] - Call method: IAgeRangerService.FindPeople ()
+INFO  2017-05-20 14:02:55,622 [63] ositoryCallInterceptor - [Repository] - Call method: IAgeRangerRepository`1.GetAll()
+INFO  2017-05-20 14:02:55,623 [44] ositoryCallInterceptor - [Repository] - End call IAgeRangerRepository`1.GetAll.
+INFO  2017-05-20 14:02:55,625 [63] ositoryCallInterceptor - [Repository] - End call IAgeRangerRepository`1.GetAll.
+INFO  2017-05-20 14:02:55,637 [44] ositoryCallInterceptor - [Repository] - Call method: IAgeRangerRepository`1.Query(g => ((Not(g.MaxAge.HasValue) AndAlso (g.MinAge.Value <= value(AgeRanger.Service.Implementation.AgeRangerService+<>c__DisplayClass10_0).maxAge)) OrElse ((g.MaxAge.HasValue AndAlso (g.MaxAge.Value >= value(AgeRanger.Service.Implementation.AgeRangerService+<>c__DisplayClass10_0).minAge)) AndAlso (g.MinAge.Value <= value(AgeRanger.Service.Implementation.AgeRangerService+<>c__DisplayClass10_0).maxAge))))
+INFO  2017-05-20 14:02:55,637 [63] ositoryCallInterceptor - [Repository] - Call method: IAgeRangerRepository`1.Query(g => ((Not(g.MaxAge.HasValue) AndAlso (g.MinAge.Value <= value(AgeRanger.Service.Implementation.AgeRangerService+<>c__DisplayClass10_0).maxAge)) OrElse ((g.MaxAge.HasValue AndAlso (g.MaxAge.Value >= value(AgeRanger.Service.Implementation.AgeRangerService+<>c__DisplayClass10_0).minAge)) AndAlso (g.MinAge.Value <= value(AgeRanger.Service.Implementation.AgeRangerService+<>c__DisplayClass10_0).maxAge))))
+INFO  2017-05-20 14:02:55,638 [44] ositoryCallInterceptor - [Repository] - End call IAgeRangerRepository`1.Query.
+INFO  2017-05-20 14:02:55,638 [63] ositoryCallInterceptor - [Repository] - End call IAgeRangerRepository`1.Query.
+INFO  2017-05-20 14:02:55,639 [44] ServiceCallInterceptor - [Service] - End call IAgeRangerService.FindPeople. It takes: 19 millisecond
+INFO  2017-05-20 14:02:55,640 [44] ApiActionFilters       - ---> [API] End AgeRanger.WebApp.Controllers.Api.PersonController, action Filter. It takes: 20 millisecond ---> 
+
 ============================================
 
 AgeRanger is a world leading application designed to identify person's age group!
