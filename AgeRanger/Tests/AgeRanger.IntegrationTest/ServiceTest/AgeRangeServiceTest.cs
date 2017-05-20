@@ -24,7 +24,7 @@ namespace AgeRanger.IntegrationTest.ServiceTest
         public void TestGetAllPeople()
         {
             // Arrange
-            var service = this.autofacScope.Resolve<IAgeRangeService>();
+            var service = this.autofacScope.Resolve<IAgeRangerService>();
 
             // Act
             var result = service.FindPeople(string.Empty);
@@ -37,7 +37,7 @@ namespace AgeRanger.IntegrationTest.ServiceTest
         public void TestGetSomePeople()
         {
             // Arrange
-            var service = this.autofacScope.Resolve<IAgeRangeService>();
+            var service = this.autofacScope.Resolve<IAgeRangerService>();
 
             // Act
             var result = service.FindPeople("Nguyen");
@@ -50,7 +50,7 @@ namespace AgeRanger.IntegrationTest.ServiceTest
         public void TestGetPersonById()
         {
             // Arrange
-            var service = this.autofacScope.Resolve<IAgeRangeService>();
+            var service = this.autofacScope.Resolve<IAgeRangerService>();
 
             // Act
             var result = service.GetPersonById(1);
@@ -63,7 +63,7 @@ namespace AgeRanger.IntegrationTest.ServiceTest
         public void TestEditExitingPerson()
         {
             // Arrange
-            var service = this.autofacScope.Resolve<IAgeRangeService>();
+            var service = this.autofacScope.Resolve<IAgeRangerService>();
             // Create Person for testing
             var newPersonModel = service.SavePerson(new PersonModel()
             {
@@ -95,7 +95,7 @@ namespace AgeRanger.IntegrationTest.ServiceTest
         public void TestAddNewPerson()
         {
             // Arrange
-            var service = this.autofacScope.Resolve<IAgeRangeService>();
+            var service = this.autofacScope.Resolve<IAgeRangerService>();
             var personModel = new PersonModel()
             {
                 FirstName = "Newbie",

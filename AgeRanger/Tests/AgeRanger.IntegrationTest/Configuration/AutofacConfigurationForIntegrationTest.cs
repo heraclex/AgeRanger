@@ -67,7 +67,7 @@ namespace AgeRanger.IntegrationTest.Configuration
             this.logger.InfoFormat("Register {0}", typeof(AgeRangerRepository<>).Name);
 
             // Register for Service
-            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangerService>().As<AgeRanger.Service.Contract.IAgeRangeService>();
+            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangerService>().As<AgeRanger.Service.Contract.IAgeRangerService>();
             this.logger.InfoFormat("Register {0}", typeof(AgeRanger.Service.Implementation.AgeRangerService).Name);            
         }
 

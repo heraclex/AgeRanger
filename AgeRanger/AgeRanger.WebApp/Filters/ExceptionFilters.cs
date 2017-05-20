@@ -7,13 +7,13 @@ using System.Web.Http.Filters;
 
 namespace AgeRanger.WebApp.Filters
 {
-    public class ExceptionLoggingFilterAttribute : ExceptionFilterAttribute
+    public class ExceptionFilters : ExceptionFilterAttribute
     {
         protected readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public override void OnException(HttpActionExecutedContext context)
         {
-            Logger.Error(string.Format("Unhandled exception when processing request {0} {1}.", context.Request.Method, context.Request.RequestUri), context.Exception);
+            Logger.Error(string.Format("\r\n Unhandled exception when processing request {0} {1}. \r\n", context.Request.Method, context.Request.RequestUri), context.Exception);
         }
     }
 }

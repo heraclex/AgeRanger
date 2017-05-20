@@ -11,6 +11,8 @@ using AgeRanger.DbContext;
 using AgeRanger.Repository;
 using Autofac.Integration.Mvc;
 using System.Reflection;
+using Castle.DynamicProxy;
+using Autofac.Extras.DynamicProxy;
 
 namespace AgeRanger.WebApp
 {
@@ -77,13 +79,20 @@ namespace AgeRanger.WebApp
                     .As(typeof(IAgeRangerRepository<>))
                     .WithParameter(
                         (pi, c) => pi.ParameterType == typeof(AgeRangerDbContext),
-                        (pi, c) => c.Resolve<AgeRangerDbContext>()).AsImplementedInterfaces();
+                        (pi, c) => c.Resolve<AgeRangerDbContext>()).AsImplementedInterfaces()
+                        .EnableInterfaceInterceptors().InterceptedBy(typeof(RepositoryCallInterceptor));
+            builder.Register(c => new RepositoryCallInterceptor());
             this.logger.InfoFormat("Register {0}", typeof(AgeRangerRepository<>).Name);
 
             // Register for Service
-            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangerService>().As<AgeRanger.Service.Contract.IAgeRangeService>().InstancePerApiRequest();
-            this.logger.InfoFormat("Register {0}", typeof(AgeRanger.Service.Implementation.AgeRangerService).Name);
+            builder.RegisterType<AgeRanger.Service.Implementation.AgeRangerService>()
+                .As<AgeRanger.Service.Contract.IAgeRangerService>()
+                .InstancePerRequest().EnableInterfaceInterceptors()
+                .InterceptedBy(typeof(ServiceCallInterceptor));
+            builder.Register(c => new ServiceCallInterceptor());
 
+            this.logger.InfoFormat("Register {0}", typeof(AgeRanger.Service.Implementation.AgeRangerService).Name);
+            
             // Only apply for API controller
             this.builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             this.logger.Info("Register API controllers");

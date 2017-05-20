@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using AgeRanger.WebApp.Filters;
 using System.Web.Mvc;
 
 namespace AgeRanger.WebApp
@@ -7,7 +7,7 @@ namespace AgeRanger.WebApp
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute());            
         }
     }
 }

@@ -14,9 +14,9 @@ namespace AgeRanger.WebApp.Controllers.Api
     public class PersonController : ApiController
     {
 
-        private readonly IAgeRangeService service;
+        private readonly IAgeRangerService service;
 
-        public PersonController(IAgeRangeService service)
+        public PersonController(IAgeRangerService service)
         {
             this.service = service;
         }
@@ -68,7 +68,7 @@ namespace AgeRanger.WebApp.Controllers.Api
             return response;
         }
 
-        // POST: api/person/update/{filter}
+        // POST: api/person/update/{id}
         [Route("api/person/update/{id}")]
         [HttpPost]
         public HttpResponseMessage Update(long id, PersonModel personModel)

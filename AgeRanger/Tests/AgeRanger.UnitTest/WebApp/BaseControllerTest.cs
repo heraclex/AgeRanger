@@ -16,12 +16,12 @@ namespace AgeRanger.UnitTest.WebApp
     [TestClass]
     public abstract class BaseControllerTest
     {
-        protected Mock<IAgeRangeService> mockService;
+        protected Mock<IAgeRangerService> mockService;
 
         [TestInitialize]
         public virtual void Setup()
         {
-            this.mockService = new Mock<IAgeRangeService>();
+            this.mockService = new Mock<IAgeRangerService>();
 
             var people = TestingDataDource.PersonModelList;
             

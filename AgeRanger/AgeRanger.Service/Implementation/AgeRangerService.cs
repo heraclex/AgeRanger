@@ -12,7 +12,7 @@ namespace AgeRanger.Service.Implementation
     /// <summary>
     /// Represents for Service layer which is responsible for business logic
     /// </summary>
-    public class AgeRangerService : IAgeRangeService
+    public class AgeRangerService : IAgeRangerService
     {
 
         private readonly IAgeRangerRepository<AgeGroup> ageGroupRepo;
